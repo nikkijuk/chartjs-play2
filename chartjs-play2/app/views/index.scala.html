@@ -1,0 +1,63 @@
+@(message: String)
+
+@main("Welcome to Play 2.1") {
+      
+<script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("Chart.js"))'></script>
+   
+<canvas id="pieChart" width="400" height="400"></canvas>
+
+<canvas id="barChart" width="400" height="400"></canvas>
+
+<script type='text/javascript'>//<![CDATA[ 
+	
+	var pieChartData = [
+	{
+		value: 30,
+		color:"#F38630"
+	},
+	{
+		value : 50,
+		color : "#E0E4CC"
+	},
+	{
+		value : 100,
+		color : "#69D2E7"
+	}			
+	];
+		
+	//Get context with jQuery - using jQuery's .get() method.
+	var ctx = $("#pieChart").get(0).getContext("2d");
+	
+	//This will get the first returned node in the jQuery collection.
+	var pieChart = new Chart(ctx).Pie(pieChartData);  
+	    
+//]]>  
+
+</script>
+
+<script type='text/javascript'>//<![CDATA[ 
+
+		var barChartData = {
+			labels : ["January","February","March","April","May","June","July"],
+			datasets : [
+				{
+					fillColor : "rgba(220,220,220,0.5)",
+					strokeColor : "rgba(220,220,220,1)",
+					data : [65,59,90,81,56,55,40]
+				},
+				{
+					fillColor : "rgba(151,187,205,0.5)",
+					strokeColor : "rgba(151,187,205,1)",
+					data : [28,48,40,19,96,27,100]
+				}
+			]
+
+		}
+
+	var myLine = new Chart(document.getElementById("barChart").getContext("2d")).Bar(barChartData);
+
+//]]>  
+
+</script>
+
+}
