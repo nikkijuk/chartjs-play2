@@ -1,0 +1,52 @@
+@(message: String)(metrics:Map[String, Object])
+
+@import com.google.gson.Gson
+
+@main("Welcome to Play 2.1") {
+      
+<script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("Chart.js"))'></script>
+   
+<canvas id="radarChartCanvas" width="400" height="400"></canvas>
+
+<canvas id="radarChartDynamicCanvas" width="400" height="400"></canvas>
+
+<script type='text/javascript'>//<![CDATA[ 
+
+var radarChartData = {
+	labels : ["Eating","Drinking","Sleeping","Designing","Coding","Partying","Running"],
+	datasets : [
+		{
+			fillColor : "rgba(220,220,220,0.5)",
+			strokeColor : "rgba(220,220,220,1)",
+			pointColor : "rgba(220,220,220,1)",
+			pointStrokeColor : "#fff",
+			data : [65,59,90,81,56,55,40]
+		},
+		{
+			fillColor : "rgba(151,187,205,0.5)",
+			strokeColor : "rgba(151,187,205,1)",
+			pointColor : "rgba(151,187,205,1)",
+			pointStrokeColor : "#fff",
+			data : [28,48,40,19,96,27,100]
+		}
+	]
+}
+
+var radarChart = new Chart(document.getElementById("radarChartCanvas").getContext("2d")).Radar(radarChartData);
+
+
+//]]> 
+
+</script>
+
+<script lang="text/javascript">
+
+var radarChartDynamicData = @{Html(new Gson().toJson(metrics))};
+
+var dynamicChart = new Chart(document.getElementById("radarChartDynamicCanvas").getContext("2d")).Radar(radarChartDynamicData);
+
+</script>
+
+
+
+}

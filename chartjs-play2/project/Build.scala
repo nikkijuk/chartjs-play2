@@ -4,10 +4,13 @@ import play.Project._
 
 object ApplicationBuild extends Build {
 
-  val appName         = "highcharts-play2"
+  val appName         = "chartjs-play2"
   val appVersion      = "1.0-SNAPSHOT"
 
   val appDependencies = Seq(
+    
+    // gson
+    "com.google.code.gson" % "gson" % "2.2.4",
       
     // webjars for play
     "org.webjars" %% "webjars-play" % "2.1.0-3",

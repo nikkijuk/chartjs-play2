@@ -4,9 +4,11 @@
       
 <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("Chart.js"))'></script>
    
-<canvas id="pieChart" width="400" height="400"></canvas>
+<canvas id="pieChartCanvas" width="400" height="400"></canvas>
 
-<canvas id="barChart" width="400" height="400"></canvas>
+<canvas id="barChartCanvas" width="400" height="400"></canvas>
+
+<canvas id="radarChartCanvas" width="400" height="400"></canvas>
 
 <script type='text/javascript'>//<![CDATA[ 
 	
@@ -26,7 +28,7 @@
 	];
 		
 	//Get context with jQuery - using jQuery's .get() method.
-	var ctx = $("#pieChart").get(0).getContext("2d");
+	var ctx = $("#pieChartCanvas").get(0).getContext("2d");
 	
 	//This will get the first returned node in the jQuery collection.
 	var pieChart = new Chart(ctx).Pie(pieChartData);  
@@ -54,9 +56,38 @@
 
 		}
 
-	var myLine = new Chart(document.getElementById("barChart").getContext("2d")).Bar(barChartData);
+	var barChart = new Chart(document.getElementById("barChartCanvas").getContext("2d")).Bar(barChartData);
 
 //]]>  
+
+</script>
+
+<script type='text/javascript'>//<![CDATA[ 
+
+var radarChartData = {
+	labels : ["Eating","Drinking","Sleeping","Designing","Coding","Partying","Running"],
+	datasets : [
+		{
+			fillColor : "rgba(220,220,220,0.5)",
+			strokeColor : "rgba(220,220,220,1)",
+			pointColor : "rgba(220,220,220,1)",
+			pointStrokeColor : "#fff",
+			data : [65,59,90,81,56,55,40]
+		},
+		{
+			fillColor : "rgba(151,187,205,0.5)",
+			strokeColor : "rgba(151,187,205,1)",
+			pointColor : "rgba(151,187,205,1)",
+			pointStrokeColor : "#fff",
+			data : [28,48,40,19,96,27,100]
+		}
+	]
+}
+
+	var radarChart = new Chart(document.getElementById("radarChartCanvas").getContext("2d")).Radar(radarChartData);
+
+
+//]]> 
 
 </script>
 
